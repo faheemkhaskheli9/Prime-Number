@@ -1,0 +1,48 @@
+import numpy as np
+
+prime = np.array([2,3,5,7])
+
+n = 0
+
+def primenumbers(prime,n):
+    for i in range(10,20000):
+        p = True
+        for j in range(0,prime.size):
+            mod = i % prime[j]
+            n+=1
+            if mod == 0:
+                p = False
+                break
+        if p:
+            prime = np.append(prime,[i])
+    return prime,n
+
+n2 = 0
+def primenumbers2(n2):
+    prime2 = np.array([2,3,5,7])
+    for i in range(10,20000):
+        p = True
+        for j in range(0,30):
+            if j >= prime2.size:
+                break
+            n2+=1
+            mod = i % prime2[j]
+            if mod == 0:
+                p = False
+                break
+        if p:
+            prime2 = np.append(prime2,[i])
+    return prime2,n2
+
+prime,n = primenumbers(prime,n)
+
+print(prime)
+print(n," numbers of time loop repeat itself")
+
+prime2,n2 = primenumbers2(n2)
+print(prime2)
+print(n2," numbers of time loop repeat itself")
+
+per = prime.size / prime2.size
+
+print(prime.size ," ", prime2.size," ",per)
