@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Check a number (CLI)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "prime_checker",
+            "args": ["97", "--method", "known-primes"],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": { "PYTHONPATH": "${workspaceFolder}/src" }
+        },
+        {
+            "name": "Run tests",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": ["tests"],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

@@ -1,0 +1,61 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import codecs, json
+import pandas as pd
+
+prime = np.array([2,3,5,7])
+pRepeat = np.array([1,2])
+
+n = 0
+
+with open('primenumber.json') as data_file:
+    a = json.load(data_file)
+    prime = np.array(a)
+
+##print(prime)
+last_prime = prime[-1]
+print(last_prime)
+n2 = 0
+def primenumbers2(prime,n2,pRepeat):
+    
+    for i in range(last_prime,last_prime+100000):
+        p = True
+        previous_remainder = 9
+        repeats = 0
+        for j in range(0,99):
+            
+            repeats += 1
+            if previous_remainder < prime[j]:
+                break
+            previous_remainder = i / prime[j]
+            if j >= prime.size:
+                break
+            n2+=1
+            mod = i % prime[j]
+            if mod == 0:
+                pRepeat = np.append(pRepeat,prime[j])
+                p = False
+                break
+        if p:
+            prime = np.append(prime,[i])
+##            print(repeats)
+    return prime,n2,pRepeat
+
+prime2,n2,pRepeat = primenumbers2(prime,n2,pRepeat)
+##print(prime2)
+print(n2," numbers of time loop repeat itself")
+print(prime2[-1])
+##prime2 = pd.Series(prime2).to_json(orient='values')
+
+with open('primenumber.json', 'w') as outfile:
+    b = prime2.tolist()
+    json.dump(b, outfile)
+
+##per = prime.size / prime2.size
+
+##print(prime.size ," ", prime2.size," ",per)
+##print(pRepeat)
+##ranges = (0,1000)
+##bins=200
+##plt.hist(pRepeat, bins,ranges, rwidth=1)
+##plt.show()
